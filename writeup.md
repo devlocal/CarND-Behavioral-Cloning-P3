@@ -17,6 +17,7 @@ The goals / steps of this project are the following:
 [image3]: ./media/before.png "Before Balancing"
 [image4]: ./media/after.png "After Balancing"
 [image5]: ./media/visualization.png "Visualization"
+[image6]: ./media/loss.png "Loss"
 
 ## Rubric Points
 Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -135,6 +136,12 @@ When enough training data has been collected, the model started to overfit after
 I have added two dropout layers to combat overfitting - one after the second convolutional layer and one more after the last convolutional layer (see `model.py` lines 39 and 43). I experimented with different values of drop rate `p` (tried `0.5`, `0.25`). I also tried to add a dropout layer after each convolutional layer, drop rate was set to `0.05` in this case. However, adding more dropout layers did not improve accuracy, I guess network layers did not see enough training data.
 
 The best results were produced with two dropout layers and `p=0.25`.
+
+### Training accuracy
+
+The chart below shows training and validation loss reported by `model.py` when producing `model.h5`. For the first 5 epochs training and validation loss were decreasing, after the 6th epoch validation loss went up which means the model has probably started overfitting. To avoid further overfitting `EarlyStopping` terminated training.
+
+![alt text][image6]
 
 ### Model parameter tuning
 
